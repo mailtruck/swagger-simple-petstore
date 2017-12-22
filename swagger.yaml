@@ -1,0 +1,53 @@
+---
+swagger: "2.0"
+info:
+  description: >-
+    This is a simple sample server Petstore server.
+  version: "1.0.0"
+  title: "Swagger Petstore"
+  contact:
+    email: "apiteam@swagger.io"
+host: "petstore.swagger.io"
+basePath: "/v2"
+schemes:
+- "http"
+paths:
+  /store/inventory:
+    get:
+      tags:
+      - "store"
+      summary: "Returns pet inventories by status"
+      description: "Returns a map of status codes to quantities"
+      operationId: "getInventory"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: "#/definitions/Category"
+            
+      security:
+      - apikey: []
+
+securityDefinitions:
+  apikey:
+    type: "apiKey"
+    name: "apikey"
+    in: "query"
+
+definitions:
+  Category:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
