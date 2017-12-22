@@ -10,6 +10,7 @@ info:
 host: "petstore.swagger.io"
 basePath: "/v2"
 schemes:
+- "https"
 - "http"
 paths:
   /store/inventory:
@@ -21,7 +22,8 @@ paths:
       operationId: "getInventory"
       produces:
       - "application/json"
-      parameters: []
+      parameters:
+      - $ref: "#/parameters/page"
       responses:
         200:
           description: "successful operation"
@@ -51,3 +53,10 @@ definitions:
         format: "int64"
       name:
         type: "string"
+        
+parameters:
+  page:
+    name: page
+    in: query
+    type: string
+    description: page to request
